@@ -1,10 +1,11 @@
-import Search from "./components/Search.jsx";
+// src/App.jsx
+import UserSearch from './components/UserSearch';
 
 function App() {
   return (
-    <div className="App">
-      <h1>GitHub User Search</h1>
-      <Search />
+    <div>
+      <h1 className="text-lg font-bold p-4">GitHub User Search</h1>
+      <UserSearch />
     </div>
   );
 }
