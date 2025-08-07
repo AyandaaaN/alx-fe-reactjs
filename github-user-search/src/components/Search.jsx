@@ -2,6 +2,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+const fetchUserData = async (query) => {
+  const response = await axios.get(`https://api.github.com/search/users?q=${query}`);
+  return response.data.items;
+};
+
 const Search = () => {
   const [username, setUsername] = useState('');
   const [location, setLocation] = useState('');
@@ -18,8 +23,8 @@ const Search = () => {
     if (minRepos) query += ` repos:>=${minRepos}`;
 
     try {
-      const response = await axios.get(`https://api.github.com/search/users?q=${query}`);
-      setResults(response.data.items);
+      const users = await fetchUserData(query);
+setResults(users);
       setError('');
     } catch (err) {
       console.error(err);
