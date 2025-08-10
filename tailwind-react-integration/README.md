@@ -1,2 +1,3 @@
 # Tailwind React Integration
-This is the Tailwind setup for the ALX React JS project.
+
+This project sets up Tailwind CSS in a React (Vite) app for ALX.
