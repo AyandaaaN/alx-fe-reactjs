@@ -3,36 +3,80 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://source.unsplash.com/640x360/?spaghetti,carbonara,pasta"
+    "image": "https://source.unsplash.com/640x360/?spaghetti,carbonara,pasta",
+    "ingredients": ["200g spaghetti", "2 eggs + 1 yolk", "80g pancetta/bacon", "40g pecorino/parmesan", "Black pepper", "Salt"],
+    "steps": [
+      "Cook pasta in salted water until al dente.",
+      "Crisp pancetta; remove from heat.",
+      "Whisk eggs with cheese and pepper.",
+      "Toss hot pasta with pancetta, then off-heat add egg mixture; loosen with pasta water.",
+      "Serve immediately with extra cheese and pepper."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
-    "image": "https://source.unsplash.com/640x360/?chicken,tikka,masala,curry,indian"
+    "image": "https://source.unsplash.com/640x360/?chicken,tikka,masala,curry,indian",
+    "ingredients": ["500g chicken breast/thighs", "1 cup yogurt", "2 tsp garam masala", "1 tsp cumin", "1 tsp paprika", "2 cups tomato puree", "1/2 cup cream", "2 tbsp butter", "Salt"],
+    "steps": [
+      "Marinate chicken in yogurt + spices 30 min (or overnight).",
+      "Sear/grill chicken until just cooked.",
+      "Simmer tomato puree with butter and spices 10 min.",
+      "Add cream, then chicken; simmer 5–10 min.",
+      "Serve with rice/naan."
+    ]
   },
   {
     "id": 3,
     "title": "Lemon Garlic Pasta",
     "summary": "Bright, zesty pasta tossed with lemon, garlic, olive oil, and a sprinkle of parmesan.",
-    "image": "https://source.unsplash.com/640x360/?lemon,garlic,pasta"
+    "image": "https://source.unsplash.com/640x360/?lemon,garlic,pasta",
+    "ingredients": ["200g spaghetti", "3 cloves garlic", "1 lemon (zest & juice)", "3 tbsp olive oil", "30g parmesan", "Salt & pepper"],
+    "steps": [
+      "Cook pasta; reserve 1/2 cup cooking water.",
+      "Sauté garlic in olive oil gently (don’t brown).",
+      "Add lemon zest/juice and pasta water.",
+      "Toss pasta with sauce; finish with parmesan, salt, pepper."
+    ]
   },
   {
     "id": 4,
     "title": "Beef Stew",
     "summary": "Slow-cooked beef with carrots and potatoes in a rich, savory broth.",
-    "image": "https://source.unsplash.com/640x360/?beef,stew"
+    "image": "https://source.unsplash.com/640x360/?beef,stew",
+    "ingredients": ["700g stewing beef", "2 tbsp flour", "1 onion", "2 carrots", "2 potatoes", "2 cups beef stock", "1 tbsp tomato paste", "Bay leaf", "Salt & pepper"],
+    "steps": [
+      "Season + flour beef; brown in pot.",
+      "Sauté onion; add tomato paste; deglaze.",
+      "Add stock, bay; simmer 60 min.",
+      "Add carrots & potatoes; cook until tender.",
+      "Season to taste."
+    ]
   },
   {
     "id": 5,
     "title": "Veggie Burrito Bowl",
     "summary": "Rice, beans, salsa, corn, and fresh guac for a quick, hearty meal.",
-    "image": "https://source.unsplash.com/640x360/?burrito,bowl,vegetarian,vegan"
+    "image": "https://source.unsplash.com/640x360/?burrito,bowl,vegetarian,vegan",
+    "ingredients": ["2 cups cooked rice", "1 can black beans", "1 cup corn", "Salsa", "Lettuce", "Guacamole", "Lime", "Salt"],
+    "steps": [
+      "Warm beans and corn; season.",
+      "Layer bowl: rice, beans, corn, lettuce.",
+      "Top with salsa, guacamole, lime juice."
+    ]
   },
   {
     "id": 6,
     "title": "Shakshuka",
     "summary": "Eggs poached in a spiced tomato and pepper sauce—perfect for brunch.",
-    "image": "https://source.unsplash.com/640x360/?shakshuka,eggs,tomato,skillet"
+    "image": "https://source.unsplash.com/640x360/?shakshuka,eggs,tomato,skillet",
+    "ingredients": ["1 tbsp olive oil", "1 onion", "1 red pepper", "2 cloves garlic", "1 tsp cumin", "1 tsp paprika", "1 can tomatoes", "4 eggs", "Salt & pepper"],
+    "steps": [
+      "Sauté onion, pepper, garlic with spices.",
+      "Add tomatoes; simmer to thicken.",
+      "Make wells; crack in eggs; cover until set.",
+      "Season and serve with bread."
+    ]
   }
 ]
