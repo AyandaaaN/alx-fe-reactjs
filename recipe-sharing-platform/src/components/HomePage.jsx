@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import data from "../data.json"; // static import avoids runtime import issues
 
 export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  // Load mock data on mount (dynamic import keeps the “load from JSON file” requirement)
   useEffect(() => {
-    import("../data.json")
-      .then((mod) => setRecipes(mod.default || mod))
-      .finally(() => setLoading(false));
+    // guard against bad JSON shape
+    setRecipes(Array.isArray(data) ? data : []);
   }, []);
-
-  if (loading) {
-    return <p className="text-sm text-gray-500">Loading recipes…</p>;
-  }
 
   return (
     <section>
       <div className="mb-6 flex items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Latest Recipes</h1>
-          <p className="text-sm text-gray-500">
-            Browse {recipes.length} tasty ideas.
-          </p>
+          <p className="text-sm text-gray-500">Browse {recipes.length} tasty ideas.</p>
         </div>
         <a
           href="#"
@@ -38,7 +31,7 @@ export default function HomePage() {
             key={r.id}
             className="group overflow-hidden rounded-2xl bg-white shadow transition hover:-translate-y-0.5 hover:shadow-lg"
           >
-            <a href={`/recipes/${r.id}`} className="block">
+            <Link to={`/recipe/${r.id}`} className="block">
               <img
                 src={r.image}
                 alt={r.title}
@@ -48,14 +41,12 @@ export default function HomePage() {
                 <h2 className="text-lg font-semibold transition-colors group-hover:text-blue-600">
                   {r.title}
                 </h2>
-                <p className="text-sm leading-relaxed text-gray-600">
-                  {r.summary}
-                </p>
+                <p className="text-sm leading-relaxed text-gray-600">{r.summary}</p>
                 <span className="inline-flex text-sm font-medium text-blue-600 group-hover:underline">
                   View details →
                 </span>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
