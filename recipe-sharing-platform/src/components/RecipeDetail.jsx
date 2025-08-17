@@ -1,11 +1,17 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import data from "../data.json";
 
 export default function RecipeDetail() {
   const { id } = useParams();
-  const recipe = (Array.isArray(data) ? data : []).find(
-    (r) => String(r.id) === String(id)
-  );
+  const [recipe, setRecipe] = useState(null);
+
+  // Load the specific recipe on mount / when id changes
+  useEffect(() => {
+    const arr = Array.isArray(data) ? data : [];
+    const found = arr.find((r) => String(r.id) === String(id));
+    setRecipe(found || null);
+  }, [id]);
 
   if (!recipe) {
     return (
@@ -16,6 +22,9 @@ export default function RecipeDetail() {
       </div>
     );
   }
+
+  // Support either `instructions` or `steps` field
+  const instructions = recipe.instructions ?? recipe.steps ?? [];
 
   return (
     <article className="mx-auto max-w-3xl">
@@ -34,10 +43,11 @@ export default function RecipeDetail() {
                 {recipe.ingredients.map((ing, i) => <li key={i}>{ing}</li>)}
               </ul>
             </div>
+
             <div className="rounded-xl border bg-gray-50 p-4">
-              <h2 className="mb-2 font-semibold">Steps</h2>
+              <h2 className="mb-2 font-semibold">Instructions</h2>
               <ol className="list-decimal space-y-2 pl-5 text-gray-700">
-                {recipe.steps.map((s, i) => <li key={i}>{s}</li>)}
+                {instructions.map((step, i) => <li key={i}>{step}</li>)}
               </ol>
             </div>
           </section>
