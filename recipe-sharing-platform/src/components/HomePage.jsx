@@ -17,12 +17,12 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold">Latest Recipes</h1>
           <p className="text-sm text-gray-500">Browse {recipes.length} tasty ideas.</p>
         </div>
-        <a
-          href="#"
+        <Link
+          to="/add"
           className="inline-flex items-center rounded-lg border px-3 py-2 text-sm font-medium hover:bg-gray-100"
         >
           + Add Recipe
-        </a>
+        </Link>
       </div>
 
       <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
