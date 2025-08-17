@@ -3,36 +3,36 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://picsum.photos/seed/carbonara/640/360"
+    "image": "https://source.unsplash.com/640x360/?spaghetti,carbonara,pasta"
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
-    "image": "https://picsum.photos/seed/tikka/640/360"
+    "image": "https://source.unsplash.com/640x360/?chicken,tikka,masala,curry,indian"
   },
   {
     "id": 3,
     "title": "Lemon Garlic Pasta",
     "summary": "Bright, zesty pasta tossed with lemon, garlic, olive oil, and a sprinkle of parmesan.",
-    "image": "https://picsum.photos/seed/lemongarlic/640/360"
+    "image": "https://source.unsplash.com/640x360/?lemon,garlic,pasta"
   },
   {
     "id": 4,
     "title": "Beef Stew",
     "summary": "Slow-cooked beef with carrots and potatoes in a rich, savory broth.",
-    "image": "https://picsum.photos/seed/stew/640/360"
+    "image": "https://source.unsplash.com/640x360/?beef,stew"
   },
   {
     "id": 5,
     "title": "Veggie Burrito Bowl",
     "summary": "Rice, beans, salsa, corn, and fresh guac for a quick, hearty meal.",
-    "image": "https://picsum.photos/seed/burrito/640/360"
+    "image": "https://source.unsplash.com/640x360/?burrito,bowl,vegetarian,vegan"
   },
   {
     "id": 6,
     "title": "Shakshuka",
     "summary": "Eggs poached in a spiced tomato and pepper sauce—perfect for brunch.",
-    "image": "https://picsum.photos/seed/shakshuka/640/360"
+    "image": "https://source.unsplash.com/640x360/?shakshuka,eggs,tomato,skillet"
   }
 ]
