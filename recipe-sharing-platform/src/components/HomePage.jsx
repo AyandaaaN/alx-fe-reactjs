@@ -1,0 +1,64 @@
+import { useEffect, useState } from "react";
+
+export default function HomePage() {
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load mock data on mount (dynamic import keeps the “load from JSON file” requirement)
+  useEffect(() => {
+    import("../data.json")
+      .then((mod) => setRecipes(mod.default || mod))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <p className="text-sm text-gray-500">Loading recipes…</p>;
+  }
+
+  return (
+    <section>
+      <div className="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold">Latest Recipes</h1>
+          <p className="text-sm text-gray-500">
+            Browse {recipes.length} tasty ideas.
+          </p>
+        </div>
+        <a
+          href="#"
+          className="inline-flex items-center rounded-lg border px-3 py-2 text-sm font-medium hover:bg-gray-100"
+        >
+          + Add Recipe
+        </a>
+      </div>
+
+      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {recipes.map((r) => (
+          <li
+            key={r.id}
+            className="group overflow-hidden rounded-2xl bg-white shadow transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            <a href={`/recipes/${r.id}`} className="block">
+              <img
+                src={r.image}
+                alt={r.title}
+                className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
+              <div className="space-y-2 p-4">
+                <h2 className="text-lg font-semibold transition-colors group-hover:text-blue-600">
+                  {r.title}
+                </h2>
+                <p className="text-sm leading-relaxed text-gray-600">
+                  {r.summary}
+                </p>
+                <span className="inline-flex text-sm font-medium text-blue-600 group-hover:underline">
+                  View details →
+                </span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
