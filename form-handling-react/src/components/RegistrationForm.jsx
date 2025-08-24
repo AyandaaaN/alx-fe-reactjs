@@ -2,93 +2,75 @@ import { useState } from 'react';
 import { registerUser } from '../api/mockAuth';
 
 export default function RegistrationForm() {
-  const [values, setValues] = useState({ username: '', email: '', password: '' });
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState({ loading: false, success: '', error: '' });
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setValues((v) => ({ ...v, [name]: value }));
-  };
+  const [username, setUsername] = useState('');
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors]     = useState({});
+  const [status, setStatus]     = useState({ loading: false, success: '', error: '' });
 
   const validate = () => {
     const e = {};
-    if (!values.username.trim()) e.username = 'Username is required';
-    if (!values.email.trim()) e.email = 'Email is required';
-    if (!values.password.trim()) e.password = 'Password is required';
+    if (!username.trim()) e.username = 'Username is required';
+    if (!email.trim()) e.email = 'Email is required';
+    if (!password.trim()) e.password = 'Password is required';
     return e;
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ loading: false, success: '', error: '' });
-
+    setErrors({});
     const eObj = validate();
     setErrors(eObj);
     if (Object.keys(eObj).length) return;
 
     try {
-      setStatus((s) => ({ ...s, loading: true }));
-      const res = await registerUser(values);
-      setStatus({ loading: false, success: `Welcome, ${res.username}!`, error: '' });
-      setValues({ username: '', email: '', password: '' });
+      setStatus({ loading: true });
+      await registerUser({ username, email, password });
+      setStatus({ loading: false, success: `Welcome, ${username}!`, error: '' });
+      setUsername('');
+      setEmail('');
+      setPassword('');
     } catch (err) {
       setStatus({ loading: false, success: '', error: err.message });
     }
   };
 
   return (
-    <form onSubmit={onSubmit} style={styles.form}>
+    <form onSubmit={onSubmit} style={{ display: 'grid', gap: 8 }}>
       <h2>Register (Controlled Components)</h2>
 
       <label>Username</label>
       <input
         name="username"
-        value={values.username}
-        onChange={onChange}
-        placeholder="e.g. sibusiso"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
       />
-      {errors.username && <span style={styles.err}>{errors.username}</span>}
+      {errors.username && <span style={{ color: 'crimson' }}>{errors.username}</span>}
 
       <label>Email</label>
       <input
         name="email"
         type="email"
-        value={values.email}
-        onChange={onChange}
-        placeholder="you@example.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
-      {errors.email && <span style={styles.err}>{errors.email}</span>}
+      {errors.email && <span style={{ color: 'crimson' }}>{errors.email}</span>}
 
       <label>Password</label>
       <input
         name="password"
         type="password"
-        value={values.password}
-        onChange={onChange}
-        placeholder="min 6 chars"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
-      {errors.password && <span style={styles.err}>{errors.password}</span>}
+      {errors.password && <span style={{ color: 'crimson' }}>{errors.password}</span>}
 
       <button type="submit" disabled={status.loading}>
         {status.loading ? 'Submitting…' : 'Create Account'}
       </button>
 
-      {status.success && <div style={styles.ok}>{status.success}</div>}
-      {status.error && <div style={styles.err}>{status.error}</div>}
+      {status.success && <div style={{ color: 'green' }}>{status.success}</div>}
+      {status.error && <div style={{ color: 'crimson' }}>{status.error}</div>}
     </form>
   );
 }
-
-const styles = {
-  form: {
-    display: 'grid',
-    gap: 8,
-    maxWidth: 420,
-    padding: '1rem',
-    border: '1px solid #eee',
-    borderRadius: 12
-  },
-  err: { color: 'crimson', fontSize: 13 },
-  ok: { color: 'green', marginTop: 8 }
-};
