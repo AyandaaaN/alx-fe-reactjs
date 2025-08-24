@@ -13,8 +13,7 @@ describe('TodoList', () => {
     render(<TodoList />);
     const input = screen.getByLabelText('todo-input');
     fireEvent.change(input, { target: { value: 'New Task' } });
-    const form = screen.getByRole('form', { name: 'add-todo-form' }) || input.closest('form');
-    fireEvent.submit(form);
+    fireEvent.submit(input.closest('form'));
     await waitFor(() => expect(screen.getByText('New Task')).toBeInTheDocument());
   });
 
