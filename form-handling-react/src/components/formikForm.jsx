@@ -13,7 +13,7 @@ export default function FormikForm() {
     <Formik
       initialValues={{ username: '', email: '', password: '' }}
       validationSchema={schema}
-      onSubmit={async (values, { setSubmitting, resetForm, setStatus }) => {
+      onSubmit={async (values, { setSubmitting, setStatus, resetForm }) => {
         setStatus('');
         try {
           await registerUser(values);
