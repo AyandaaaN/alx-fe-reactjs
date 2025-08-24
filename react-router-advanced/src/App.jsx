@@ -5,8 +5,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 
 import Profile from './components/Profile';
-import ProfileDetails from './components/ProfileDetails';
-import ProfileSettings from './components/ProfileSettings';
 import Post from './components/Post';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -26,16 +24,12 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
 
-            {/* Dynamic */}
+            {/* Dynamic route */}
             <Route path="/posts/:postId" element={<Post />} />
 
-            {/* Protected + Nested */}
+            {/* Protected parent; note the /* so nested child routes match */}
             <Route element={<ProtectedRoute />}>
-              <Route path="/profile" element={<Profile />}>
-                <Route index element={<ProfileDetails />} />
-                <Route path="details" element={<ProfileDetails />} />
-                <Route path="settings" element={<ProfileSettings />} />
-              </Route>
+              <Route path="/profile/*" element={<Profile />} />
             </Route>
 
             <Route path="*" element={<p>Not Found</p>} />

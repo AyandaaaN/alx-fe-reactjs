@@ -1,5 +1,7 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import ProfileDetails from './ProfileDetails';
+import ProfileSettings from './ProfileSettings';
 
 export default function Profile() {
   const { user, logout } = useAuth();
@@ -15,8 +17,13 @@ export default function Profile() {
         <Link to="settings">Settings</Link>
       </nav>
 
-      <div style={{ marginTop: 16, padding: 12, border: '1px solid #eee', borderRadius: 8 }}>
-        <Outlet />
+      {/* Nested routes declared INSIDE Profile.jsx */}
+      <div style={{ marginTop: 16 }}>
+        <Routes>
+          <Route index element={<ProfileDetails />} />
+          <Route path="details" element={<ProfileDetails />} />
+          <Route path="settings" element={<ProfileSettings />} />
+        </Routes>
       </div>
     </div>
   );
