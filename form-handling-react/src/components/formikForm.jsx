@@ -3,67 +3,52 @@ import * as Yup from 'yup';
 import { registerUser } from '../api/mockAuth';
 
 const schema = Yup.object({
-  username: Yup.string().trim().min(3, 'Min 3 characters').required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(6, 'Min 6 characters').required('Required')
+  username: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid').required('Required'),
+  password: Yup.string().min(6, 'Min 6').required('Required'),
 });
 
 export default function FormikForm() {
   return (
-    <div style={styles.wrap}>
-      <h2>Register (Formik + Yup)</h2>
-      <Formik
-        initialValues={{ username: '', email: '', password: '' }}
-        validationSchema={schema}
-        onSubmit={async (values, { setSubmitting, resetForm, setStatus }) => {
-          setStatus({ success: '', error: '' });
-          try {
-            await registerUser(values);
-            setStatus({ success: `Account created for ${values.username}!`, error: '' });
-            resetForm();
-          } catch (e) {
-            setStatus({ success: '', error: e.message });
-          } finally {
-            setSubmitting(false);
-          }
-        }}
-      >
-        {({ isSubmitting, status }) => (
-          <Form style={styles.form}>
-            <label htmlFor="username">Username</label>
-            <Field id="username" name="username" placeholder="e.g. sibusiso" />
-            <ErrorMessage name="username" component="div" style={styles.err} />
+    <Formik
+      initialValues={{ username: '', email: '', password: '' }}
+      validationSchema={schema}
+      onSubmit={async (values, { setSubmitting, resetForm, setStatus }) => {
+        setStatus('');
+        try {
+          await registerUser(values);
+          setStatus('Success');
+          resetForm();
+        } catch (e) {
+          setStatus(e.message);
+        } finally {
+          setSubmitting(false);
+        }
+      }}
+    >
+      {({ isSubmitting, status }) => (
+        <Form style={{ display: 'grid', gap: 8 }}>
+          <h2>Register (Formik + Yup)</h2>
 
-            <label htmlFor="email">Email</label>
-            <Field id="email" name="email" type="email" placeholder="you@example.com" />
-            <ErrorMessage name="email" component="div" style={styles.err} />
+          <label>Username</label>
+          <Field name="username" />
+          <ErrorMessage name="username" component="div" />
 
-            <label htmlFor="password">Password</label>
-            <Field id="password" name="password" type="password" placeholder="min 6 chars" />
-            <ErrorMessage name="password" component="div" style={styles.err} />
+          <label>Email</label>
+          <Field name="email" type="email" />
+          <ErrorMessage name="email" component="div" />
 
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting…' : 'Create Account'}
-            </button>
+          <label>Password</label>
+          <Field name="password" type="password" />
+          <ErrorMessage name="password" component="div" />
 
-            {status?.success && <div style={styles.ok}>{status.success}</div>}
-            {status?.error && <div style={styles.err}>{status.error}</div>}
-          </Form>
-        )}
-      </Formik>
-    </div>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting…' : 'Create Account'}
+          </button>
+
+          {status && <div>{status}</div>}
+        </Form>
+      )}
+    </Formik>
   );
 }
-
-const styles = {
-  wrap: { maxWidth: 420 },
-  form: {
-    display: 'grid',
-    gap: 8,
-    padding: '1rem',
-    border: '1px solid #eee',
-    borderRadius: 12
-  },
-  err: { color: 'crimson', fontSize: 13 },
-  ok: { color: 'green', marginTop: 8 }
-};
