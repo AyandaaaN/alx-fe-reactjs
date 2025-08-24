@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { AuthProvider } from './auth/AuthContext';
-import ProtectedRoute from './auth/ProtectedRoute';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
-import ProfileDetails from './pages/ProfileDetails';
-import ProfileSettings from './pages/ProfileSettings';
-import Post from './pages/Post';
+
+import Profile from './components/Profile';
+import ProfileDetails from './components/ProfileDetails';
+import ProfileSettings from './components/ProfileSettings';
+import Post from './components/Post';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   return (
@@ -25,7 +26,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
 
-            {/* Dynamic route */}
+            {/* Dynamic */}
             <Route path="/posts/:postId" element={<Post />} />
 
             {/* Protected + Nested */}
@@ -37,7 +38,6 @@ export default function App() {
               </Route>
             </Route>
 
-            {/* 404 */}
             <Route path="*" element={<p>Not Found</p>} />
           </Routes>
         </div>
